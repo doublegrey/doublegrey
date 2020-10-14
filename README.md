@@ -1,4 +1,4 @@
 ### Hi there 👋
 
-![stats](https://readme.doublegrey.dev)
+![stats](http://80.232.252.104:8080/)
 
