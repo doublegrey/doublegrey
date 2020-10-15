@@ -43,9 +43,8 @@ func greet(w http.ResponseWriter, req *http.Request) {
 		fmt.Println(err.Error())
 	}
 
-	w.Header().Set("Content-Type", "image/svg+xml")
-	w.Header().Set("charset", "utf-8")
-	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	setDefaultHeaders(w)
+
 	s := svg.New(w)
 	s.Start(400, 500)
 	s.Link("https://doublegrey.dev", "https://doublegrey.dev")
@@ -54,6 +53,14 @@ func greet(w http.ResponseWriter, req *http.Request) {
 	// s.Image(15, 150, 370, 300, "https://media1.tenor.com/images/b85ecfd8cff510945f6659786312ba28/tenor.gif?itemid=8126276")
 	s.LinkEnd()
 	s.End()
+}
+
+func setDefaultHeaders(w http.ResponseWriter) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET")
+	w.Header().Set("Cache-Control", "no-store, no-cache, must-revalidate, post-check=0, pre-check=0")
+	w.Header().Set("Content-Type", "image/svg+xml; charset=UTF-8")
+	w.Header().Set("Vary", "Accept-Encoding")
 }
 
 func lookup(ip string) (IP, error) {
