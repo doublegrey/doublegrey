@@ -44,12 +44,14 @@ func greet(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "image/svg+xml")
+	w.Header().Set("charset", "utf-8")
+	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 	s := svg.New(w)
 	s.Start(400, 500)
 	s.Link("https://doublegrey.dev", "https://doublegrey.dev")
 	s.Text(200, 100, ip.IP, "text-anchor:middle;font-size:30px;font-family:sans-serif")
 	s.Text(200, 135, fmt.Sprintf("%s, %s %s", ip.CountryName, ip.City, ip.Location.CountryFlagEmoji), "text-anchor:middle;font-size:20px;font-family:sans-serif")
-	s.Image(15, 150, 370, 300, "https://media1.tenor.com/images/b85ecfd8cff510945f6659786312ba28/tenor.gif?itemid=8126276")
+	// s.Image(15, 150, 370, 300, "https://media1.tenor.com/images/b85ecfd8cff510945f6659786312ba28/tenor.gif?itemid=8126276")
 	s.LinkEnd()
 	s.End()
 }
