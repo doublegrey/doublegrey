@@ -1,4 +1,3 @@
 ### Hi there 👋
 
-![stats](https://readme.doublegrey.dev)
-
+[![stats](https://doublegrey.dev)](https://readme.doublegrey.dev)
