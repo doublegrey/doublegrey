@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"net"
 	"net/http"
 	"os"
 	"sync"
@@ -34,10 +33,7 @@ func main() {
 
 // On error: draw only greeting text
 func greet(w http.ResponseWriter, req *http.Request) {
-	host, _, err := net.SplitHostPort(req.RemoteAddr)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	host := req.Header.Get("X-REAL-IP")
 	ip, err := lookup(host)
 	if err != nil {
 		fmt.Println(err.Error())
